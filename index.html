@@ -108,7 +108,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:#F0F1F2;color:var(--black)
 .trigger-note{font-size:10px;color:var(--gray);margin-top:8px;line-height:1.55}
 .admin-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
 .admin-label{font-size:11px;color:var(--gray);width:80px;flex-shrink:0}
-.admin-input{flex:1;min-width:0;max-width:120px;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:'Noto Sans JP',sans-serif;outline:none}
+.admin-input{flex:1;min-width:0;max-width:70px;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:'Noto Sans JP',sans-serif;outline:none}
 .admin-unit{font-size:11px;color:var(--gray);white-space:nowrap}
 .admin-save{width:100%;padding:11px;background:var(--gray-d);color:white;border:none;border-radius:8px;font-size:13px;font-weight:700;font-family:'Noto Sans JP',sans-serif;cursor:pointer;margin-top:8px;transition:background 0.2s}
 .admin-save:hover{background:var(--black)}
@@ -488,8 +488,8 @@ body{font-family:'Noto Sans JP',sans-serif;background:#F0F1F2;color:var(--black)
       </div>
       <div class="admin-sec">
         <div class="admin-sec-title">在庫・確率設定</div>
-        <div class="admin-row"><span class="admin-label">2等 残り枠</span><input class="admin-input" type="number" id="iStock2" value="3" min="0"><span class="admin-unit">名</span></div>
-        <div class="admin-row"><span class="admin-label">3等 残り枠</span><input class="admin-input" type="number" id="iStock3" value="5" min="0"><span class="admin-unit">名</span></div>
+        <div class="admin-row"><span class="admin-label">2等 残り</span><input class="admin-input" type="number" id="iStock2" value="3" min="0"><span class="admin-unit">名</span></div>
+        <div class="admin-row"><span class="admin-label">3等 残り</span><input class="admin-input" type="number" id="iStock3" value="5" min="0"><span class="admin-unit">名</span></div>
         <div class="admin-row"><span class="admin-label">1等 確率</span><input class="admin-input" type="number" id="iProb1" value="1" min="0" max="100"><span class="admin-unit">%</span></div>
         <div class="admin-row"><span class="admin-label">2等 確率</span><input class="admin-input" type="number" id="iProb2" value="10" min="0" max="100"><span class="admin-unit">%</span></div>
         <div class="admin-row"><span class="admin-label">3等 確率</span><input class="admin-input" type="number" id="iProb3" value="20" min="0" max="100"><span class="admin-unit">%</span></div>
