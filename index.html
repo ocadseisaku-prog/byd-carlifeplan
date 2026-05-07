@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
 <title>BYD AUTO 大分 — オーナーアンケート＆抽選</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
@@ -124,7 +125,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:#F0F1F2;color:var(--black)
 .survey-eyebrow{font-size:11px;letter-spacing:0.2em;color:var(--red);text-transform:uppercase;font-weight:700;margin-bottom:6px}
 .survey-title{font-size:26px;font-weight:700;color:var(--black);line-height:1.3}
 .survey-sub{font-size:13px;color:var(--gray);margin-top:8px;line-height:1.7}
-.progress-sidebar{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:200;display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 6px;background:var(--white);border-radius:12px 0 0 12px;box-shadow:-2px 0 12px rgba(0,0,0,0.1);border:1px solid var(--border);border-right:none;min-width:36px}
+.progress-sidebar{position:fixed;right:0;bottom:24px;z-index:200;display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 6px;background:var(--white);border-radius:12px 0 0 12px;box-shadow:-2px 0 12px rgba(0,0,0,0.1);border:1px solid var(--border);border-right:none;min-width:36px}
 .progress-bar-v{width:8px;height:160px;background:var(--border);border-radius:4px;overflow:hidden;position:relative}
 .progress-fill-v{position:absolute;bottom:0;left:0;width:100%;background:var(--red);border-radius:4px;transition:height 0.4s ease;height:0%}
 .progress-pct{font-size:11px;font-weight:700;color:var(--black);line-height:1;margin-top:2px}
@@ -634,6 +635,9 @@ function initCards(){
   function start(e){
     e.preventDefault();
     if(completed)return;
+    fill.style.transition='none';
+    fill.style.width='0';
+    void fill.offsetWidth;
     btn.classList.add('pressing');
     pressTimer=setTimeout(()=>{
       completed=true;
@@ -718,6 +722,10 @@ function updateTriggerUI() {
 }
 
 document.getElementById('adminSaveBtn').addEventListener('click', async ()=>{
+  const saveBtn = document.getElementById('adminSaveBtn');
+  if(saveBtn.disabled) return;
+  saveBtn.disabled = true;
+  saveBtn.textContent = '保存中...';
   const prob1  = parseInt(document.getElementById('iProb1').value)||1;
   const prob2  = parseInt(document.getElementById('iProb2').value)||10;
   const prob3  = parseInt(document.getElementById('iProb3').value)||20;
@@ -733,10 +741,14 @@ document.getElementById('adminSaveBtn').addEventListener('click', async ()=>{
       method:'POST',
       body: JSON.stringify({action:'admin', subAction:'updateStock', prob1, prob2, prob3, stock2, stock3})
     });
-    alert('設定を保存しました。');
+    saveBtn.textContent = '✓ 保存完了';
   } catch(e) {
-    alert('設定をローカルに保存しました（オフライン）。');
+    saveBtn.textContent = '✓ ローカル保存';
   }
+  setTimeout(()=>{
+    saveBtn.textContent = '設定を保存';
+    saveBtn.disabled = false;
+  }, 1500);
 });
 document.getElementById('adminResetBtn').addEventListener('click', async ()=>{
   if(!confirm('在庫と抽選状態をリセットしますか？'))return;
