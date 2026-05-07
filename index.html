@@ -545,7 +545,7 @@ document.querySelectorAll('.nav-tab').forEach(tab => {
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     tab.classList.add('active');
     document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
-    window.scrollTo({top:0,behavior:'smooth'});
+    setTimeout(()=>{window.scrollTo(0,0);},100);
     // 進捗サイドバーはアンケートのみ表示
     const sidebar = document.getElementById('progressSidebar');
     if(sidebar) sidebar.style.display = tab.dataset.panel === 'survey' ? 'flex' : 'none';
@@ -959,7 +959,7 @@ document.querySelector('.submit-btn').addEventListener('click', async () => {
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   if(lotteryTab) lotteryTab.classList.add('active');
   document.getElementById('panel-lottery').classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(()=>{window.scrollTo(0,0);},100);
   const sidebar = document.getElementById('progressSidebar');
   if(sidebar) sidebar.style.display='none';
 });
